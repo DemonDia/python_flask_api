@@ -1,5 +1,3 @@
-from cgitb import reset
-from email.mime import base
 import requests
 
 # base URL

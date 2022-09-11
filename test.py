@@ -89,7 +89,7 @@ def deleteVideo(videoId):
 
 # ====================Test Case 1: Get all Data(With contents)====================
 def testCase1():
-    print("=============+Test Case 1=============+")
+    print("=============Test Case 1: Get all Data(With contents)=============+")
     print(getAllVideos())
     print()
 
@@ -97,7 +97,7 @@ def testCase1():
 
 
 def testCase2():
-    print("=============+Test Case 2=============+")
+    print("=============Test Case 2: Get all Data(Without contents)=============+")
     deleteAll()
     print(getAllVideos())
     print()
@@ -107,7 +107,7 @@ def testCase2():
 
 
 def testCase3():
-    print("=============+Test Case 3=============+")
+    print("=============Test Case 3: Get Data with Specified ID(Pass)=============+")
     print(getVideo(12))
     print()
 
@@ -115,7 +115,7 @@ def testCase3():
 
 
 def testCase4():
-    print("=============+Test Case 4=============+")
+    print("=============Test Case 4: Get Data with Specified ID(fail)=============+")
     print(getVideo(122))
     print()
 
@@ -123,7 +123,7 @@ def testCase4():
 
 
 def testCase5():
-    print("=============+Test Case 5=============+")
+    print("=============Test Case 5: Add Data(Pass)=============+")
     videoJson = {
         "name": "random video",
         "likes": 250000,
@@ -136,7 +136,7 @@ def testCase5():
 
 
 def testCase6():
-    print("=============+Test Case 6=============+")
+    print("=============Test Case 6: Add Data(Fail)=============+")
 
     print("========a)Missing name========")
     videoJsonA = {
@@ -168,7 +168,7 @@ def testCase6():
 
 
 def testCase7():
-    print("=============+Test Case 7=============+")
+    print("=============Test Case 7: Update Data(Pass)=============+")
     print("========Original Object========")
     print(getVideo(12))
     print()
@@ -213,7 +213,7 @@ def testCase7():
 
 
 def testCase8():
-    print("=============+Test Case 8=============+")
+    print("=============Test Case 8: Update Data(Fail)=============+")
 
     print("========Target Object(Before)========")
     print(getVideo(12))
@@ -243,7 +243,7 @@ def testCase8():
 
 
 def testCase9():
-    print("=============+Test Case 9=============+")
+    print("=============Test Case 9: Delete Data(Pass=============+")
     print("========Before Deleting========")
     print(getVideo(13))
     print()
@@ -260,7 +260,7 @@ def testCase9():
 
 
 def testCase10():
-    print("=============+Test Case 10=============+")
+    print("=============Test Case 10: Delete Data(Fail)=============")
     print("========Before Deleting========")
     print(getVideo(222))
     print()
@@ -290,6 +290,7 @@ def main():
     testCase8()
     testCase9()
     testCase10()
+    # resetToDefaults(25)
     return
 
 

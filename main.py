@@ -1,6 +1,6 @@
 from flask import request
 from config import app
-from ApiFunctions.VideoFunctions import getVideoById, getAllVideos,createVideo, updateVideoById, deleteVideoById,deleteAllVideos
+from ApiFunctions.VideoFunctions import *
 # =================app routes=================
 
 # to get ALL the videos in the db

@@ -11,7 +11,7 @@ Recommended folder structure:
     - ApiFunctions (functions called in the various routes; data model of relevant entity is imported)
         - <api_name>Functions.py
     - Models (Entity models are found here; the db and marshmellow instances are imported)
-        -<model_name>.py
+        - <model_name>.py
     - Tests (This is where you test the individual APIs)
         - <api_name>Test.py
     - main.py (main code where you import the content from api folder)

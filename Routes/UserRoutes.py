@@ -28,7 +28,6 @@ def updateUser(user_id):
 # user_id --> id of user you want to delete
 @app.route("/user/<int:user_id>", methods=["DELETE"])
 def deleteSingleUser(user_id):
-    print("user_id",user_id)
     return deleteUserById(user_id)
 
 # to delete everything (FOR TESTING PURPOSES)

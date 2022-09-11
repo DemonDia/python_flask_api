@@ -14,7 +14,7 @@ Recommended folder structure:
     - Tests
         - <api_name>Test.py
     - .gitignore
-    - config.py (all the setup will happen there; SQLAlchemy and App
+    - config.py (all the setup will happen there; SQLAlchemy and App initialisation)
     - main.py (where you actually run the code)
 
 

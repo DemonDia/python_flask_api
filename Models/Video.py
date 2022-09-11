@@ -6,10 +6,11 @@ class Video(db.Model):
     name = db.Column(db.String(100), nullable=False)
     likes = db.Column(db.Integer, nullable=False)
     views = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __repr__(self):
-        return f"Video[id={self.id}, name={self.name}, likes={self.likes}, views={self.views}]"
-db.create_all()
+        return f"Video[id={self.id}, name={self.name}, likes={self.likes}, views={self.views}, userId = {self.user_id}]"
+
 # the Video schema (for JSON formatting)
 class VideoSchema(ma.Schema):
     class Meta:

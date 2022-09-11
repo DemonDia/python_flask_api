@@ -1,17 +1,15 @@
 from flask import jsonify
 from config import db
-from Models.Video import *
+from Models.User import *
 
 # ==============Create Operations==============
 # create
-def createVideo(jsonObject):
+def createUser(jsonObject):
     try:
         # =======getting the fields based on the request object=======
         name = jsonObject.get("name")
-        likes = jsonObject.get("likes")
-        views = jsonObject.get("views")
-        video = Video(name=name, likes=likes, views=views)
-        db.session.add(video)
+        user = User(name=name)
+        db.session.add(user)
         db.session.commit()
         return jsonify(
             {
@@ -28,50 +26,50 @@ def createVideo(jsonObject):
         )
 
 # =============Read Operations==============
-# get all videos
-def getAllVideos():
-    result = Video.query.all()
-    return_results = videos_schema.dump(result)
+# get all users
+def getAllUsers():
+    result = User.query.all()
+    return_results = users_schema.dump(result)
     # results = [i.tojson() for i in result]
     return jsonify(
         {
             "success": True,
             "data": {
-                "videos": return_results
+                "users": return_results
             }
 
         }
     )
 
-# get 1 video
-def getVideoById(video_id):
-    result = Video.query.filter_by(id=video_id).first()
+# get 1 user
+def getUserById(user_id):
+    result = User.query.filter_by(id=user_id).first()
     if not result:
         return jsonify(
             {
                 "success": False,
-                "message": "Video not found"
+                "message": "User not found"
             }
         )
-    formatted_result = video_schema.dump(result)
+    formatted_result = user_schema.dump(result)
     return jsonify(
         {
             "success": True,
             "data": {
-                "videos": formatted_result
+                "users": formatted_result
             }
 
         }
     )
 # =============Update functions==============
-def updateVideoById(video_id,jsonData):
+def updateUserById(user_id,jsonData):
     # =====find whether item exists=====
-    result = Video.query.filter_by(id=video_id).first()
+    result = User.query.filter_by(id=user_id).first()
     if not result:
         return jsonify(
             {
                 "success": False,
-                "message": "Video not found; unable to update"
+                "message": "User not found; unable to update"
             }
         )
     name = jsonData.get("name")
@@ -92,17 +90,17 @@ def updateVideoById(video_id,jsonData):
     )
 
 # ==========Delete Functions==============
-# delete 1 video
-def deleteVideoById(video_id):
-    targetVideo = Video.query.filter_by(id=video_id).first()
-    if not targetVideo:
+# delete 1 user
+def deleteUserById(user_id):
+    targetUser = User.query.filter_by(id=user_id).first()
+    if not targetUser:
         return jsonify(
             {
                 "success": False,
-                "message": "Video not found; unable to delete"
+                "message": "User not found; unable to delete"
             }
         )
-    result = Video.query.filter_by(id=video_id).delete()
+    result = User.query.filter_by(id=user_id).delete()
     db.session.commit()
     if result:
         return jsonify(
@@ -112,9 +110,9 @@ def deleteVideoById(video_id):
             }
         )
 
-# delete all videos
-def deleteAllVideos():
-    result = Video.query.delete()
+# delete all users
+def deleteAllUsers():
+    result = User.query.delete()
     db.session.commit()
     if result:
         return jsonify(

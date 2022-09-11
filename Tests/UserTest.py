@@ -1,7 +1,7 @@
 import requests
 
 # base URL
-BASE = "http://127.0.0.1:5000/video"
+BASE = "http://127.0.0.1:5000/user"
 
 # =============================Helper functions=============================
 
@@ -9,10 +9,7 @@ BASE = "http://127.0.0.1:5000/video"
 def generateData(dataSize):
     for i in range(1, dataSize+1):
         req = requests.post(BASE, json={
-            "name": "Video  #{i}".format(i=i),
-            "likes": 100 * i,
-            "views": 10000 * i,
-            "user_id": i
+            "name": "User  #{i}".format(i=i)
         })
 
 # emptys database
@@ -26,42 +23,42 @@ def resetToDefaults(dataSize):
 
 # =========CRUD helpers=========
 # =====Create=====
-# add video
-# videoJson --> a json object containing data of video to be INSERTED
-def addVideo(videoJson):
-    addedVideo = requests.post(BASE, json=videoJson)
-    return addedVideo.json()
+# add user
+# userJson --> a json object containing data of user to be INSERTED
+def addUser(userJson):
+    addedUser = requests.post(BASE, json=userJson)
+    return addedUser.json()
 
 
 
 # =====Read=====
-# get a specific video
-def getVideo(videoId):
-    obtainVideo = requests.get(BASE+"/{videoId}".format(videoId=videoId))
-    return obtainVideo.json()
+# get a specific user
+def getUser(userId):
+    obtainUser = requests.get(BASE+"/{userId}".format(userId=userId))
+    return obtainUser.json()
 
-# get all videos
-def getAllVideos():
-    videos = requests.get(BASE)
-    return videos.json()
+# get all users
+def getAllUsers():
+    users = requests.get(BASE)
+    return users.json()
 
 
 # =====Update=====
-# update a specific video
-# videoId --> id of a video you intend to update
-# videoJson --> a json object containing data of video to be UPDATED
-def updateVideo(videoId,videoJson):
-    updatedVideo = requests.put(BASE+"/{videoId}".format(videoId=videoId),params = videoJson)
-    return updatedVideo.json()
+# update a specific user
+# userId --> id of a user you intend to update
+# userJson --> a json object containing data of user to be UPDATED
+def updateUser(userId,userJson):
+    updatedUser = requests.put(BASE+"/{userId}".format(userId=userId),params = userJson)
+    return updatedUser.json()
 
 # =====Delete=====
-# delete a specific video
-# videoId --> id of a video you intend to delete
+# delete a specific user
+# userId --> id of a user you intend to delete
 
-def deleteVideo(videoId):
-    deletedVideo = requests.delete(
-        BASE+"/{videoId}".format(videoId=videoId))
-    return deletedVideo.json()
+def deleteUser(userId):
+    deletedUser = requests.delete(
+        BASE+"/{userId}".format(userId=userId))
+    return deletedUser.json()
 
 
 # =============================Different types of requests=============================
@@ -91,7 +88,7 @@ def deleteVideo(videoId):
 # ====================Test Case 1: Get all Data(With contents)====================
 def testCase1():
     print("=============Test Case 1: Get all Data(With contents)=============+")
-    print(getAllVideos())
+    print(getAllUsers())
     print()
 
 # ====================Test Case 2: Get all Data(Without contents)====================
@@ -100,7 +97,7 @@ def testCase1():
 def testCase2():
     print("=============Test Case 2: Get all Data(Without contents)=============+")
     deleteAll()
-    print(getAllVideos())
+    print(getAllUsers())
     print()
     resetToDefaults(25)
 
@@ -109,7 +106,7 @@ def testCase2():
 
 def testCase3():
     print("=============Test Case 3: Get Data with Specified ID(Pass)=============+")
-    print(getVideo(12))
+    print(getUser(12))
     print()
 
 # ====================Test Case 4: Get Data with Specified ID(fail)====================
@@ -117,7 +114,7 @@ def testCase3():
 
 def testCase4():
     print("=============Test Case 4: Get Data with Specified ID(fail)=============+")
-    print(getVideo(122))
+    print(getUser(122))
     print()
 
 # ====================Test Case 5: Add Data(Pass)====================
@@ -125,12 +122,10 @@ def testCase4():
 
 def testCase5():
     print("=============Test Case 5: Add Data(Pass)=============+")
-    videoJson = {
-        "name": "random video",
-        "likes": 250000,
-        "views": 450000000
+    userJson = {
+        "name": "random user",
     }
-    print(addVideo(videoJson))
+    print(addUser(userJson))
     print()
 
 # ====================Test Case 6: Add Data(Fail)====================
@@ -138,29 +133,10 @@ def testCase5():
 
 def testCase6():
     print("=============Test Case 6: Add Data(Fail)=============+")
+    userJsonA = {
 
-    print("========a)Missing name========")
-    videoJsonA = {
-        "likes": 18287,
-        "views": 22727276
     }
-    print(addVideo(videoJsonA))
-    print()
-
-    print("========b)Missing likes========")
-    videoJsonB = {
-        "name": "random video X",
-        "views": 400080
-    }
-    print(addVideo(videoJsonB))
-    print()
-
-    print("========c)Missing views========")
-    videoJsonC = {
-        "name": "random video 3",
-        "likes": 250000,
-    }
-    print(addVideo(videoJsonC))
+    print(addUser(userJsonA))
     print()
     print()
 
@@ -171,41 +147,41 @@ def testCase6():
 def testCase7():
     print("=============Test Case 7: Update Data(Pass)=============+")
     print("========Original Object========")
-    print(getVideo(12))
+    print(getUser(12))
     print()
 
     print("========a)Change Name========")
-    videoJsonA={
+    userJsonA={
         "name": "DJ Fest"
     }
-    print(updateVideo(12,videoJsonA))
-    print(getVideo(12))
+    print(updateUser(12,userJsonA))
+    print(getUser(12))
     print()
 
     print("========b)Change Views========")
-    videoJsonB={
+    userJsonB={
         "views": 12000
     }
-    print(updateVideo(12,videoJsonB))
-    print(getVideo(12))
+    print(updateUser(12,userJsonB))
+    print(getUser(12))
     print()
 
     print("========c)Change Likes========")
-    videoJsonC={
+    userJsonC={
         "likes": 482
     }
-    print(updateVideo(12,videoJsonC))
-    print(getVideo(12))
+    print(updateUser(12,userJsonC))
+    print(getUser(12))
     print()
 
     print("========d)Change All========")
-    videoJsonD={
+    userJsonD={
         "name": "Rock Performance",
         "views": 6000000,
         "likes": 83373
     }
-    print(updateVideo(12,videoJsonD))
-    print(getVideo(12))
+    print(updateUser(12,userJsonD))
+    print(getUser(12))
     print()
     print()
 
@@ -217,43 +193,40 @@ def testCase8():
     print("=============Test Case 8: Update Data(Fail)=============+")
 
     print("========Target Object(Before)========")
-    print(getVideo(12))
+    print(getUser(12))
     print()
 
     print("========a)id is big========")
-    videoJsonA={
-        "name": "Cat Dancing",
-        "views": 49545442,
-        "likes": 65785
+    userJsonA={
+        "name": "Shimizu Esora",
+
     }
-    print(updateVideo(1111,videoJsonA))
+    print(updateUser(1111,userJsonA))
     print()
     print("========b)id is negative========")
-    videoJsonB={
-        "name": "Cat Dancing",
-        "views": 49545442,
-        "likes": 65785
+    userJsonB={
+        "name": "Yor Forger"
     }
-    print(updateVideo(1111,videoJsonB))
+    print(updateUser(1111,userJsonB))
     print()
 
     print("========Target Object(After)========")
-    print(getVideo(12))
+    print(getUser(12))
     print()
 # ====================Test Case 9: Delete Data(Pass)====================
 
 
 def testCase9():
-    print("=============Test Case 9: Delete Data(Pass)=============+")
+    print("=============Test Case 9: Delete Data(Pass=============+")
     print("========Before Deleting========")
-    print(getVideo(13))
+    print(getUser(13))
     print()
 
-    print(deleteVideo(13))
+    print(deleteUser(13))
     print()
 
     print("========After Deleting========")
-    print(getVideo(13))
+    print(getUser(13))
     print()
     print()
 
@@ -263,14 +236,14 @@ def testCase9():
 def testCase10():
     print("=============Test Case 10: Delete Data(Fail)=============")
     print("========Before Deleting========")
-    print(getVideo(222))
+    print(getUser(222))
     print()
 
-    print(deleteVideo(222))
+    print(deleteUser(222))
     print()
 
     print("========After Deleting========")
-    print(getVideo(222))
+    print(getUser(222))
     print()
     print()
 
@@ -291,7 +264,7 @@ def main():
     testCase8()
     testCase9()
     testCase10()
-    # resetToDefaults(25)
+
     return
 
 

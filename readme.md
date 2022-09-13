@@ -39,7 +39,7 @@ Eg: If your model name is 'Entity', your naming convention should be like:
 ### Setup (for testing):
 1. Clone this repo
 2. Open the project in VSC 
-3. In your terminal, Type this in CLI: 
+3. In your terminal, type this in CLI: 
 ```
 pip install -r requirements.txt
 ```
@@ -49,7 +49,6 @@ NOTE: this downloads the dependencies stated in the requirements.txt
 ### Running the project (for testing):
 To run the main API, type the following in your terminal:
 ```
-cd Tests
 python main.py
 ```
 

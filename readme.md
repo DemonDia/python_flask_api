@@ -26,31 +26,40 @@ Project
 |
 ├── requirments.txt (this lists the dependencies required to run the project)
 ```
-** 
-NOTE: the naming convention of <model_name> and <api_name> should be consistent:
+
+**NOTE: the naming convention of <model_name> and <api_name> should be consistent.**
+
 Eg: If your model name is 'Entity', your naming convention should be like:
 - Routes: EntityRoutes.py
 - ApiFunctions: EntityFunctions.py
 - Models: Entity.py
 - Tests: EntityTest.py
-**
 
 
 ### Setup (for testing):
 1. Clone this repo
 2. Open the project in VSC 
-3. In your terminal, Type this in CLI: pip install -r requirements.txt
-(NOTE: this downloads the dependencies stated in the requirements.txt)
+3. In your terminal, type this in CLI: 
+```
+pip install -r requirements.txt
+```
+
+NOTE: this downloads the dependencies stated in the requirements.txt
 
 ### Running the project (for testing):
 To run the main API, type the following in your terminal:
-- python main.py
+```
+python main.py
+```
 
 To run the test cases, type the following in your terminal:
-- cd Tests (to go to the path of the Tests folder)
-- python <api_name>Test.py (to test the specific API; based on its name)
+```
+cd Tests
+python <api_name>Test.py
+```
+Note: 
+- cd Tests: you go to the path of the Tests folder
+- python <api_name>Test.py: you run the test script of a given entity (api_name), depending on what you want to test
 
-** 
-NOTE: before you run your test file inside the 'Tests' folder, ensure your main.py is running
-**
+__NOTE: before you run your test file inside the 'Tests' folder, ensure your main.py is running__
 
